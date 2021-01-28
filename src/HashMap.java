@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class HashMap<K, V>
 {
     private Entry<K, V>[] m_buckets;
@@ -161,6 +163,11 @@ public class HashMap<K, V>
         m_count = 0;
     }
 
+    public KeyCollection   GetKeys()   { return new KeyCollection();   }
+    public ValueCollection GetValues() { return new ValueCollection(); }
+
+    public EntryCollection GetEntries() { return new EntryCollection(); }
+
     public static class Entry<K, V>
     {
         private final int m_hashCode;
@@ -189,5 +196,79 @@ public class HashMap<K, V>
         public void SetValue(V value) { m_value = value; }
 
         public void SetNext(Entry<K, V> next) { m_next = next; }
+    }
+
+    public abstract class HashIterator<T> implements Iterator<T>
+    {
+        private int         m_bucketIndex;
+        private Entry<K, V> m_currEntry;
+
+        public HashIterator()
+        {
+            m_bucketIndex = 0;
+            m_currEntry   = m_buckets[m_bucketIndex];
+            while(m_currEntry == null)
+            {
+                m_bucketIndex++;
+                if(m_bucketIndex >= m_buckets.length)
+                    break;
+
+                m_currEntry = m_buckets[m_bucketIndex];
+            }
+        }
+
+        public Entry<K, V> NextEntry()
+        {
+            Entry<K, V> result = m_currEntry;
+            m_currEntry = m_currEntry.GetNext();
+            while(m_currEntry == null)
+            {
+                m_bucketIndex++;
+                if(m_bucketIndex >= m_buckets.length)
+                    break;
+
+                m_currEntry = m_buckets[m_bucketIndex];
+            }
+            return result;
+        }
+
+        @Override
+        public boolean hasNext() { return m_currEntry != null; }
+    }
+
+    public class KeyIterator extends HashIterator<K>
+    {
+        @Override
+        public K next() { return NextEntry().GetKey(); }
+    }
+
+    public class ValueIterator extends HashIterator<V>
+    {
+        @Override
+        public V next() { return NextEntry().GetValue(); }
+    }
+
+    public class EntryIterator extends HashIterator<Entry<K, V>>
+    {
+        @Override
+        public Entry<K, V> next() { return NextEntry(); }
+    }
+
+    public class KeyCollection implements Iterable<K>
+    {
+        @Override
+        public Iterator<K> iterator() { return new KeyIterator(); }
+    }
+
+    public class ValueCollection implements Iterable<V>
+    {
+        @Override
+        public Iterator<V> iterator() { return new ValueIterator(); }
+    }
+
+    public class EntryCollection implements Iterable<Entry<K, V>>
+    {
+        @Override
+        public Iterator<Entry<K, V>> iterator() { return new EntryIterator(); }
     }
 }

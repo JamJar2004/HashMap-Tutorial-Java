@@ -23,25 +23,8 @@ public class Main
         map.Place(18, "R");
         map.Place(19, "S");
 
-        System.out.println(map.Get(1 ));
-        System.out.println(map.Get(2 ));
-        System.out.println(map.Get(3 ));
-        System.out.println(map.Get(4 ));
-        System.out.println(map.Get(5 ));
-        System.out.println(map.Get(6 ));
-        System.out.println(map.Get(7 ));
-        System.out.println(map.Get(8 ));
-        System.out.println(map.Get(9 ));
-        System.out.println(map.Get(10));
-        System.out.println(map.Get(11));
-        System.out.println(map.Get(12));
-        System.out.println(map.Get(13));
-        System.out.println(map.Get(14));
-        System.out.println(map.Get(15));
-        System.out.println(map.Get(16));
-        System.out.println(map.Get(17));
-        System.out.println(map.Get(18));
-        System.out.println(map.Get(19));
+        for(int key : map.GetKeys())
+            System.out.println(map.Get(key));
 
         map.Remove(1);
         map.Remove(2);
@@ -50,46 +33,12 @@ public class Main
         map.Remove(5);
         map.Remove(6);
 
-        System.out.println(map.Get(1 ));
-        System.out.println(map.Get(2 ));
-        System.out.println(map.Get(3 ));
-        System.out.println(map.Get(4 ));
-        System.out.println(map.Get(5 ));
-        System.out.println(map.Get(6 ));
-        System.out.println(map.Get(7 ));
-        System.out.println(map.Get(8 ));
-        System.out.println(map.Get(9 ));
-        System.out.println(map.Get(10));
-        System.out.println(map.Get(11));
-        System.out.println(map.Get(12));
-        System.out.println(map.Get(13));
-        System.out.println(map.Get(14));
-        System.out.println(map.Get(15));
-        System.out.println(map.Get(16));
-        System.out.println(map.Get(17));
-        System.out.println(map.Get(18));
-        System.out.println(map.Get(19));
+        for(int key : map.GetKeys())
+            System.out.println(map.Get(key));
 
         map.Clear();
 
-        System.out.println(map.Get(1 ));
-        System.out.println(map.Get(2 ));
-        System.out.println(map.Get(3 ));
-        System.out.println(map.Get(4 ));
-        System.out.println(map.Get(5 ));
-        System.out.println(map.Get(6 ));
-        System.out.println(map.Get(7 ));
-        System.out.println(map.Get(8 ));
-        System.out.println(map.Get(9 ));
-        System.out.println(map.Get(10));
-        System.out.println(map.Get(11));
-        System.out.println(map.Get(12));
-        System.out.println(map.Get(13));
-        System.out.println(map.Get(14));
-        System.out.println(map.Get(15));
-        System.out.println(map.Get(16));
-        System.out.println(map.Get(17));
-        System.out.println(map.Get(18));
-        System.out.println(map.Get(19));
+        for(int key : map.GetKeys())
+            System.out.println(map.Get(key));
     }
 }
